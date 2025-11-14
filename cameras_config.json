@@ -2,14 +2,20 @@
     "cameras": [
         {
             "id": "cam_1",
-            "name": "Caméra Exemple 1",
-            "rtsp_url": "rtsp://admin:password@192.168.1.100:554/stream1",
+            "name": "Caméra Axis - ONVIF",
+            "rtsp_url": "rtsp://root:password@192.168.1.100/onvif-media/media.amp",
             "enabled": false
         },
         {
             "id": "cam_2",
-            "name": "Caméra Exemple 2",
-            "rtsp_url": "rtsp://192.168.1.101:554/h264_stream",
+            "name": "Caméra Axis - Standard",
+            "rtsp_url": "rtsp://root:password@192.168.1.101:554/axis-media/media.amp",
+            "enabled": false
+        },
+        {
+            "id": "cam_3",
+            "name": "Caméra Générique RTSP",
+            "rtsp_url": "rtsp://admin:password@192.168.1.102:554/stream1",
             "enabled": false
         }
     ]

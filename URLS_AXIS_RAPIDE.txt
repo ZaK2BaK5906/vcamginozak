@@ -1,0 +1,143 @@
+╔═══════════════════════════════════════════════════════════════╗
+║          URLs RTSP AXIS - RÉFÉRENCE RAPIDE                    ║
+╚═══════════════════════════════════════════════════════════════╝
+
+📌 TESTEZ CES URLs DANS L'ORDRE AVEC VLC :
+
+┌───────────────────────────────────────────────────────────────┐
+│ 1️⃣  ONVIF STANDARD (Recommandé - Compatible tous appareils)  │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:VOTRE_PASSWORD@IP_CAMERA/onvif-media/media.amp
+
+Exemple:
+rtsp://root:12345@192.168.1.100/onvif-media/media.amp
+
+✅ Meilleure compatibilité
+✅ Standard ONVIF officiel
+✅ Fonctionne avec tous les appareils ONVIF
+
+
+┌───────────────────────────────────────────────────────────────┐
+│ 2️⃣  AXIS STANDARD avec PORT 554 (Le plus utilisé)           │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:VOTRE_PASSWORD@IP_CAMERA:554/axis-media/media.amp
+
+Exemple:
+rtsp://root:12345@192.168.1.100:554/axis-media/media.amp
+
+✅ Fonctionne sur la plupart des modèles Axis
+✅ Spécifie explicitement le port RTSP (554)
+
+
+┌───────────────────────────────────────────────────────────────┐
+│ 3️⃣  AXIS STANDARD sans PORT                                  │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:VOTRE_PASSWORD@IP_CAMERA/axis-media/media.amp
+
+Exemple:
+rtsp://root:12345@192.168.1.100/axis-media/media.amp
+
+✅ Le port 554 est utilisé par défaut
+
+
+┌───────────────────────────────────────────────────────────────┐
+│ 4️⃣  AVEC CODEC H.264                                         │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:VOTRE_PASSWORD@IP_CAMERA:554/axis-media/media.amp?videocodec=h264
+
+Exemple:
+rtsp://root:12345@192.168.1.100:554/axis-media/media.amp?videocodec=h264
+
+
+┌───────────────────────────────────────────────────────────────┐
+│ 5️⃣  ANCIENS MODÈLES AXIS                                     │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:VOTRE_PASSWORD@IP_CAMERA/mpeg4/media.amp
+
+Exemple:
+rtsp://root:12345@192.168.1.100/mpeg4/media.amp
+
+
+═══════════════════════════════════════════════════════════════
+
+🎯 AVEC PARAMÈTRES (Options avancées)
+
+┌───────────────────────────────────────────────────────────────┐
+│ Résolution spécifique                                         │
+└───────────────────────────────────────────────────────────────┘
+
+# 720p (Recommandé pour performances)
+rtsp://root:password@IP:554/axis-media/media.amp?resolution=1280x720
+
+# 1080p (Haute qualité)
+rtsp://root:password@IP:554/axis-media/media.amp?resolution=1920x1080
+
+# VGA (Basse qualité - Rapide)
+rtsp://root:password@IP:554/axis-media/media.amp?resolution=640x480
+
+
+┌───────────────────────────────────────────────────────────────┐
+│ Profil de stream                                              │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:password@IP:554/axis-media/media.amp?streamprofile=Quality
+rtsp://root:password@IP:554/axis-media/media.amp?streamprofile=Balanced
+rtsp://root:password@IP:554/axis-media/media.amp?streamprofile=Mobile
+
+
+┌───────────────────────────────────────────────────────────────┐
+│ Avec analytics (métadonnées)                                  │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:password@IP/axis-media/media.amp?camera=1&audio=0&video=0&analytics=polygon
+
+⚠️  Nécessite AXIS OS 10.11+ et analytics activés
+
+
+═══════════════════════════════════════════════════════════════
+
+🔧 COMMENT TESTER :
+
+1. Téléchargez VLC : https://www.videolan.org/
+
+2. Ouvrez VLC → Média → Ouvrir un flux réseau (CTRL+N)
+
+3. Collez une des URLs ci-dessus en remplaçant :
+   - VOTRE_PASSWORD par votre mot de passe
+   - IP_CAMERA par l'IP de votre caméra
+
+4. Si l'image apparaît → ✅ L'URL fonctionne !
+   → Utilisez-la dans l'application
+
+5. Si ça ne marche pas → Essayez l'URL suivante
+
+
+═══════════════════════════════════════════════════════════════
+
+📝 REMPLACER :
+
+root           → Votre username (généralement "root" pour Axis)
+VOTRE_PASSWORD → Le mot de passe de votre caméra
+IP_CAMERA      → L'IP de votre caméra (ex: 192.168.1.100)
+
+
+═══════════════════════════════════════════════════════════════
+
+💡 CONSEILS :
+
+✅ Commencez TOUJOURS par l'URL ONVIF (#1)
+✅ Testez avec VLC avant d'utiliser dans l'application
+✅ Utilisez une résolution basse (720p) pour de meilleures performances
+✅ Le username par défaut Axis est "root"
+
+
+═══════════════════════════════════════════════════════════════
+
+📖 GUIDE COMPLET : Consultez GUIDE_AXIS_RTSP.md
+
+═══════════════════════════════════════════════════════════════

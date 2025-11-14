@@ -1,16 +1,75 @@
 # 📹 Guide RTSP pour Caméras Axis
 
-## 🎯 Formats RTSP Axis les plus courants
+## 🎯 Formats RTSP Axis OFFICIELS (RECOMMANDÉS)
 
-### Format de base
+### 🟢 Format ONVIF Standard (Compatible avec tous les appareils ONVIF)
+```
+rtsp://[username]:[password]@[IP]/onvif-media/media.amp
+```
+
+**Exemple:**
+```
+rtsp://root:password@192.168.1.100/onvif-media/media.amp
+```
+
+### 🟢 Format Axis Standard avec Port (Le plus utilisé)
+```
+rtsp://[username]:[password]@[IP]:554/axis-media/media.amp
+```
+
+**Exemple:**
+```
+rtsp://root:password@192.168.1.100:554/axis-media/media.amp
+```
+
+### 🟡 Format Axis Standard sans Port
 ```
 rtsp://[username]:[password]@[IP]/axis-media/media.amp
 ```
 
-### Exemples concrets
+**Exemple:**
 ```
 rtsp://root:password@192.168.1.100/axis-media/media.amp
-rtsp://admin:12345@192.168.1.64/axis-media/media.amp
+```
+
+### ⚙️ Format avec Analytics (Métadonnées de scène)
+```
+rtsp://[username]:[password]@[IP]/axis-media/media.amp?camera=1&audio=0&video=0&analytics=polygon
+```
+
+**Note:** Nécessite AXIS OS 10.11 ou ultérieur et les analytics activés
+
+---
+
+## ⚡ Ordre de Test Recommandé (testez dans VLC)
+
+Essayez ces URLs dans l'ordre suivant avec VLC Media Player:
+
+### 1️⃣ **ONVIF Standard** (Compatible avec tous les appareils ONVIF)
+```
+rtsp://root:VOTRE_PASSWORD@IP_CAMERA/onvif-media/media.amp
+```
+✅ **Avantage:** Meilleure compatibilité inter-marques
+
+### 2️⃣ **Axis Standard avec Port 554**
+```
+rtsp://root:VOTRE_PASSWORD@IP_CAMERA:554/axis-media/media.amp
+```
+✅ **Avantage:** Fonctionne sur la plupart des modèles Axis
+
+### 3️⃣ **Axis Standard sans Port**
+```
+rtsp://root:VOTRE_PASSWORD@IP_CAMERA/axis-media/media.amp
+```
+
+### 4️⃣ **Avec codec H.264**
+```
+rtsp://root:VOTRE_PASSWORD@IP_CAMERA:554/axis-media/media.amp?videocodec=h264
+```
+
+### 5️⃣ **Anciens modèles Axis**
+```
+rtsp://root:VOTRE_PASSWORD@IP_CAMERA/mpeg4/media.amp
 ```
 
 ---
