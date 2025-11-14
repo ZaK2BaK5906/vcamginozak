@@ -1,0 +1,94 @@
+╔════════════════════════════════════════════════════════════╗
+║         Multi-Caméras RTSP - Guide d'Installation          ║
+╚════════════════════════════════════════════════════════════╝
+
+📌 DEUX MÉTHODES AU CHOIX:
+
+═══════════════════════════════════════════════════════════════
+🔴 MÉTHODE 1: INSTALLATION SIMPLE (Sans environnement virtuel)
+═══════════════════════════════════════════════════════════════
+
+✅ Plus simple et rapide
+⚠️  Installe les packages globalement sur votre système
+
+1️⃣ Double-cliquez sur: INSTALLER_SIMPLE.bat
+2️⃣ Double-cliquez sur: LANCER_SIMPLE.bat
+3️⃣ Accédez à: http://127.0.0.1:5000
+
+
+OU manuellement dans CMD:
+─────────────────────────────
+cd C:\Users\ZAKARIA\Documents\vcamginozak
+pip install Flask opencv-python numpy Werkzeug
+python app.py
+─────────────────────────────
+
+
+═══════════════════════════════════════════════════════════════
+🟢 MÉTHODE 2: AVEC ENVIRONNEMENT VIRTUEL (Recommandé)
+═══════════════════════════════════════════════════════════════
+
+✅ Recommandé pour les développeurs
+✅ Isole les packages (pas de conflit)
+
+1️⃣ Double-cliquez sur: INSTALLER.bat
+2️⃣ Double-cliquez sur: LANCER.bat
+3️⃣ Accédez à: http://127.0.0.1:5000
+
+
+OU manuellement dans CMD:
+─────────────────────────────
+cd C:\Users\ZAKARIA\Documents\vcamginozak
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
+─────────────────────────────
+
+
+═══════════════════════════════════════════════════════════════
+🔧 SI ÇA NE FONCTIONNE PAS
+═══════════════════════════════════════════════════════════════
+
+1. Essayez http://127.0.0.1:5000 au lieu de localhost:5000
+
+2. Configurez le Firewall:
+   - Clic droit sur CONFIGURER_FIREWALL.bat
+   - "Exécuter en tant qu'administrateur"
+
+3. Consultez le fichier DEPANNAGE.md pour plus de solutions
+
+
+═══════════════════════════════════════════════════════════════
+📋 RÉCAPITULATIF DES FICHIERS
+═══════════════════════════════════════════════════════════════
+
+Installation Simple (sans venv):
+  🔹 INSTALLER_SIMPLE.bat  → Installer les dépendances
+  🔹 LANCER_SIMPLE.bat     → Lancer l'application
+
+Installation avec venv (recommandé):
+  🔹 INSTALLER.bat         → Créer venv + installer
+  🔹 LANCER.bat            → Lancer avec venv
+
+Dépannage:
+  🔹 CONFIGURER_FIREWALL.bat → Configurer le firewall
+  🔹 test_simple.py          → Test de diagnostic
+  🔹 DEPANNAGE.md           → Guide complet
+
+
+═══════════════════════════════════════════════════════════════
+💡 CONSEILS
+═══════════════════════════════════════════════════════════════
+
+• Utilisez TOUJOURS http://127.0.0.1:5000
+  (pas localhost:5000)
+
+• Si le navigateur tourne en boucle:
+  → Configurez le firewall avec CONFIGURER_FIREWALL.bat
+
+• Pour accéder depuis un autre PC du réseau:
+  → http://10.6.2.110:5000
+
+
+═══════════════════════════════════════════════════════════════
