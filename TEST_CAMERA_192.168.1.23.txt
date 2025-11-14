@@ -1,0 +1,137 @@
+╔═══════════════════════════════════════════════════════════════╗
+║         TEST DE VOTRE CAMÉRA AXIS (192.168.1.23)              ║
+╚═══════════════════════════════════════════════════════════════╝
+
+📌 VOTRE CONFIGURATION :
+   IP : 192.168.1.23
+   Username : root
+   Password : Tank2024!
+   Type : Axis ancien modèle (mpeg4)
+
+═══════════════════════════════════════════════════════════════
+
+🧪 URLs À TESTER DANS VLC (dans l'ordre) :
+
+┌───────────────────────────────────────────────────────────────┐
+│ 1️⃣  URL avec ! encodé en %21 (RECOMMANDÉ)                    │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:Tank2024%21@192.168.1.23/mpeg4/media.amp
+
+⚠️  Notez le %21 au lieu du !
+
+
+┌───────────────────────────────────────────────────────────────┐
+│ 2️⃣  URL avec port 554 explicite                              │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:Tank2024%21@192.168.1.23:554/mpeg4/media.amp
+
+
+┌───────────────────────────────────────────────────────────────┐
+│ 3️⃣  URL Axis standard                                        │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:Tank2024%21@192.168.1.23/axis-media/media.amp
+
+
+┌───────────────────────────────────────────────────────────────┐
+│ 4️⃣  URL ONVIF                                                │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:Tank2024%21@192.168.1.23/onvif-media/media.amp
+
+
+┌───────────────────────────────────────────────────────────────┐
+│ 5️⃣  URL mpeg4 avec canal                                     │
+└───────────────────────────────────────────────────────────────┘
+
+rtsp://root:Tank2024%21@192.168.1.23/mpeg4/1/media.amp
+
+
+═══════════════════════════════════════════════════════════════
+
+🔍 DIAGNOSTIC RÉSEAU :
+
+1. Tester la connectivité :
+
+   ping 192.168.1.23
+
+   ✅ Doit répondre
+
+2. Tester le port RTSP :
+
+   telnet 192.168.1.23 554
+
+   OU en PowerShell :
+
+   Test-NetConnection -ComputerName 192.168.1.23 -Port 554
+
+   ✅ TcpTestSucceeded doit être True
+
+3. Accéder à l'interface web :
+
+   http://192.168.1.23
+
+   Login : root
+   Password : Tank2024!
+
+═══════════════════════════════════════════════════════════════
+
+⚙️ SI VLC DEMANDE UN MOT DE PASSE :
+
+Certaines caméras demandent le mot de passe séparément dans VLC.
+Dans ce cas, utilisez cette URL SANS mot de passe :
+
+rtsp://root@192.168.1.23/mpeg4/media.amp
+
+Et entrez le mot de passe quand VLC le demande : Tank2024!
+
+═══════════════════════════════════════════════════════════════
+
+✅ UNE FOIS QUE ÇA MARCHE DANS VLC :
+
+1. Notez l'URL qui a fonctionné
+
+2. Lancez l'application :
+   Double-clic sur CORRIGER_INSTALLATION.bat
+   Puis LANCER.bat
+
+3. Ouvrez http://127.0.0.1:5000
+
+4. Cliquez sur "+ Ajouter une Caméra"
+
+5. Collez l'URL qui a marché dans VLC
+
+═══════════════════════════════════════════════════════════════
+
+🚨 PROBLÈMES COURANTS :
+
+❌ "Connection refused"
+   → Vérifiez que la caméra est allumée et sur le réseau
+   → Vérifiez l'IP avec AXIS IP Utility
+
+❌ "Authentication failed"
+   → Le mot de passe contient ! qui doit être encodé en %21
+   → Vérifiez que le compte root est activé
+
+❌ "Stream not found"
+   → Essayez les autres URLs ci-dessus
+   → Vérifiez dans l'interface web quelle URL utiliser
+
+❌ "Timeout"
+   → Vérifiez le firewall de votre PC
+   → Vérifiez que vous êtes sur le même réseau
+
+═══════════════════════════════════════════════════════════════
+
+📞 PROCHAINES ÉTAPES :
+
+1. ⬜ Ping 192.168.1.23 fonctionne ?
+2. ⬜ http://192.168.1.23 accessible ?
+3. ⬜ Une URL fonctionne dans VLC ?
+4. ⬜ Application lancée avec LANCER.bat ?
+5. ⬜ http://127.0.0.1:5000 accessible ?
+6. ⬜ Caméra ajoutée dans l'application ?
+
+═══════════════════════════════════════════════════════════════
