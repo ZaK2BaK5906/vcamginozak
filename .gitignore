@@ -1,0 +1,41 @@
+# Environnement virtuel Python
+venv/
+env/
+ENV/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Flask
+instance/
+.webassets-cache
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Base de données locale (si ajoutée plus tard)
+*.db
+*.sqlite
+*.sqlite3
+
+# Variables d'environnement
+.env
+.env.local
+
+# Fichiers temporaires
+*.tmp
+*.bak
+*.cache

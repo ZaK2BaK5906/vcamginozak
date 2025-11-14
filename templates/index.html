@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Caméras RTSP - Surveillance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📹 Surveillance Multi-Caméras RTSP</h1>
+            <button id="addCameraBtn" class="btn btn-primary">+ Ajouter une Caméra</button>
+        </header>
+
+        <div class="controls">
+            <button id="gridBtn1" class="btn btn-secondary" onclick="setGridLayout(1)">1x1</button>
+            <button id="gridBtn2" class="btn btn-secondary" onclick="setGridLayout(2)">2x2</button>
+            <button id="gridBtn3" class="btn btn-secondary" onclick="setGridLayout(3)">3x3</button>
+            <button id="gridBtn4" class="btn btn-secondary" onclick="setGridLayout(4)">4x4</button>
+            <button id="refreshBtn" class="btn btn-secondary" onclick="refreshAllCameras()">🔄 Rafraîchir</button>
+        </div>
+
+        <div id="cameraGrid" class="camera-grid grid-2">
+            {% for camera in cameras %}
+            <div class="camera-container" id="camera-{{ camera.id }}" data-camera-id="{{ camera.id }}">
+                <div class="camera-header">
+                    <h3>{{ camera.name }}</h3>
+                    <div class="camera-controls">
+                        <button class="btn-icon" onclick="toggleCamera('{{ camera.id }}')" title="Activer/Désactiver">
+                            <span id="toggle-{{ camera.id }}">{% if camera.enabled %}⏸️{% else %}▶️{% endif %}</span>
+                        </button>
+                        <button class="btn-icon" onclick="deleteCamera('{{ camera.id }}')" title="Supprimer">🗑️</button>
+                    </div>
+                </div>
+                <div class="camera-content">
+                    {% if camera.enabled %}
+                    <img src="{{ url_for('video_feed', camera_id=camera.id) }}" alt="{{ camera.name }}">
+                    {% else %}
+                    <div class="camera-disabled">
+                        <p>Caméra désactivée</p>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="camera-footer">
+                    <span class="camera-status">🟢 En ligne</span>
+                    <span class="camera-url">{{ camera.rtsp_url[:50] }}...</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Aucune caméra -->
+        {% if cameras|length == 0 %}
+        <div id="noCameras" class="no-cameras">
+            <h2>Aucune caméra configurée</h2>
+            <p>Cliquez sur le bouton "Ajouter une Caméra" pour commencer</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Modal pour ajouter une caméra -->
+    <div id="addCameraModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Ajouter une Nouvelle Caméra</h2>
+            <form id="addCameraForm">
+                <div class="form-group">
+                    <label for="cameraName">Nom de la Caméra:</label>
+                    <input type="text" id="cameraName" name="cameraName" placeholder="Ex: Caméra Entrée" required>
+                </div>
+                <div class="form-group">
+                    <label for="rtspUrl">URL RTSP:</label>
+                    <input type="text" id="rtspUrl" name="rtspUrl" placeholder="rtsp://username:password@192.168.1.100:554/stream" required>
+                    <small>Format: rtsp://[username]:[password]@[ip]:[port]/[path]</small>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+                </div>
+            </form>
+            <div class="examples">
+                <h3>Exemples d'URL RTSP:</h3>
+                <ul>
+                    <li><code>rtsp://admin:password@192.168.1.100:554/stream1</code></li>
+                    <li><code>rtsp://192.168.1.101:554/h264_stream</code></li>
+                    <li><code>rtsp://user:pass@camera.local/live/main</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
