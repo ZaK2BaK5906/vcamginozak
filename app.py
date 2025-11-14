@@ -166,23 +166,48 @@ def stop_camera_stream(camera_id):
 
 def initialize_cameras():
     """Initialise tous les flux de caméras au démarrage"""
-    cameras_data = load_cameras()
-    for camera in cameras_data['cameras']:
-        if camera.get('enabled', True):
-            start_camera_stream(camera['id'], camera['rtsp_url'])
+    try:
+        cameras_data = load_cameras()
+        enabled_count = 0
+        for camera in cameras_data['cameras']:
+            if camera.get('enabled', False):  # Changé True en False par défaut
+                print(f"⚙️  Initialisation de {camera['name']}...")
+                start_camera_stream(camera['id'], camera['rtsp_url'])
+                enabled_count += 1
+
+        if enabled_count == 0:
+            print("ℹ️  Aucune caméra activée au démarrage")
+        else:
+            print(f"✅ {enabled_count} caméra(s) initialisée(s)")
+    except Exception as e:
+        print(f"⚠️  Erreur lors de l'initialisation des caméras: {e}")
+        print("ℹ️  L'application démarrera sans caméras pré-configurées")
+
+# Logging pour debug
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Ajouter un log pour chaque requête
+@app.before_request
+def log_request():
+    logger.info(f"📥 Requête reçue: {request.method} {request.path}")
 
 if __name__ == '__main__':
     print("=" * 60)
     print("📹 Application Multi-Caméras RTSP")
     print("=" * 60)
     print(f"🌐 Serveur démarré sur: http://localhost:5000")
+    print(f"🌐 Ou accédez via: http://127.0.0.1:5000")
     print(f"🕒 Heure de démarrage: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
     print("💡 Ouvrez votre navigateur et accédez à http://localhost:5000")
+    print("💡 Si ça ne fonctionne pas, essayez http://127.0.0.1:5000")
     print("=" * 60)
 
-    # Initialise les caméras configurées
-    initialize_cameras()
+    # Initialise les caméras configurées (dans un thread séparé pour ne pas bloquer)
+    threading.Thread(target=initialize_cameras, daemon=True).start()
 
     # Démarre l'application Flask
+    print("🚀 Serveur Flask en cours de démarrage...")
     app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
