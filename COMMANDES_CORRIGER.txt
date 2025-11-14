@@ -1,0 +1,90 @@
+╔════════════════════════════════════════════════════════════╗
+║            CORRECTION DU PROBLÈME D'INSTALLATION           ║
+╚════════════════════════════════════════════════════════════╝
+
+📌 PROBLÈME DÉTECTÉ:
+   - Python 3.13 est trop récent pour numpy 1.24.3
+   - L'environnement virtuel n'est pas correctement utilisé
+   - Setuptools manquant
+
+═══════════════════════════════════════════════════════════════
+🔴 SOLUTION 1: SCRIPT AUTOMATIQUE (RECOMMANDÉ)
+═══════════════════════════════════════════════════════════════
+
+1. Fermez la fenêtre CMD actuelle (CTRL+C puis tapez "exit")
+
+2. Double-cliquez sur:
+   👉 CORRIGER_INSTALLATION.bat
+
+3. Attendez que l'installation se termine
+
+4. Lancez l'application:
+   👉 Double-clic sur LANCER.bat
+
+5. Allez sur: http://127.0.0.1:5000
+
+
+═══════════════════════════════════════════════════════════════
+🟢 SOLUTION 2: COMMANDES MANUELLES
+═══════════════════════════════════════════════════════════════
+
+Copiez-collez ces commandes UNE PAR UNE dans CMD:
+
+cd C:\Users\ZAKARIA\Documents\vcamginozak
+
+rmdir /s /q venv
+
+python -m venv venv
+
+venv\Scripts\python.exe -m pip install --upgrade pip setuptools wheel
+
+venv\Scripts\python.exe -m pip install -r requirements.txt
+
+venv\Scripts\python.exe app.py
+
+
+Puis accédez à: http://127.0.0.1:5000
+
+
+═══════════════════════════════════════════════════════════════
+⚡ SOLUTION 3: INSTALLATION SANS VENV (RAPIDE)
+═══════════════════════════════════════════════════════════════
+
+Si vous ne voulez PAS utiliser d'environnement virtuel:
+
+cd C:\Users\ZAKARIA\Documents\vcamginozak
+
+python -m pip install --upgrade pip setuptools wheel
+
+python -m pip install Flask opencv-python numpy Werkzeug
+
+python app.py
+
+
+Puis accédez à: http://127.0.0.1:5000
+
+
+═══════════════════════════════════════════════════════════════
+💡 CE QUI A ÉTÉ CORRIGÉ
+═══════════════════════════════════════════════════════════════
+
+✅ requirements.txt mis à jour avec des versions compatibles Python 3.13
+✅ Ajout de setuptools dans les dépendances
+✅ Utilisation de >= au lieu de == pour plus de flexibilité
+✅ LANCER.bat utilise maintenant venv\Scripts\python.exe
+✅ Changement de localhost:5000 en 127.0.0.1:5000
+
+
+═══════════════════════════════════════════════════════════════
+🎯 VERSIONS COMPATIBLES
+═══════════════════════════════════════════════════════════════
+
+Python 3.13 + Ces versions:
+  - Flask >= 3.0.0
+  - opencv-python >= 4.8.0
+  - numpy >= 1.26.0  (au lieu de 1.24.3)
+  - Werkzeug >= 3.0.0
+  - setuptools >= 65.0.0
+
+
+═══════════════════════════════════════════════════════════════

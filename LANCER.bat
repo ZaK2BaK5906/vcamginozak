@@ -28,11 +28,11 @@ echo ✅ Environnement activé
 
 echo.
 echo [2/3] Vérification des dépendances...
-python -c "import flask, cv2" 2>nul
+venv\Scripts\python.exe -c "import flask, cv2" 2>nul
 if errorlevel 1 (
     echo ❌ Dépendances manquantes!
     echo 📦 Installation des dépendances...
-    pip install -r requirements.txt
+    venv\Scripts\python.exe -m pip install -r requirements.txt
 )
 echo ✅ Dépendances OK
 
@@ -45,7 +45,7 @@ echo ╠════════════════════════
 echo ║                                                            ║
 echo ║  🌐 Accédez à l'application dans votre navigateur:        ║
 echo ║                                                            ║
-echo ║     http://localhost:5000                                  ║
+echo ║     http://127.0.0.1:5000                                  ║
 echo ║                                                            ║
 echo ║  📱 Accès depuis un autre appareil (même réseau):         ║
 echo ║     http://[VOTRE_IP]:5000                                 ║
@@ -57,10 +57,10 @@ echo ╚════════════════════════
 echo.
 
 REM Ouvrir automatiquement le navigateur après 2 secondes
-start "" timeout /t 2 /nobreak >nul && start http://localhost:5000
+start "" timeout /t 2 /nobreak >nul && start http://127.0.0.1:5000
 
-REM Lancer l'application
-python app.py
+REM Lancer l'application avec le Python du venv
+venv\Scripts\python.exe app.py
 
 echo.
 echo ╔════════════════════════════════════════════════════════════╗
